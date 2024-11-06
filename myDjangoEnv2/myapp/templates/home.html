@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Django Deployment of Credit Card Fraud Detection</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+         
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+            width: 600px; /* Increased width for better layout */
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem; /* Adjust font size */
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .btn-submit {
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Fraud Detection</h1>
+        <form action="{% url 'result' %}" method="post">
+            {% csrf_token %}
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="distance_from_home">Distance from Home:</label>
+                    <input type="text" class="form-control" name="distance_from_home" placeholder="Enter distance" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="distance_from_last_transaction">Distance from Last Transaction:</label>
+                    <input type="text" class="form-control" name="distance_from_last_transaction" placeholder="Enter distance" required>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="ratio_to_median_purchase_price">Ratio to Median Purchase Price:</label>
+                    <input type="text" class="form-control" name="ratio_to_median_purchase_price" placeholder="Enter ratio" required>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="repeat_retailer">Repeat Retailer:</label>
+                    <select name="repeat_retailer" class="form-control" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="used_chip">Used Chip:</label>
+                    <select name="used_chip" class="form-control" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="used_pin_number">Used PIN Number:</label>
+                    <select name="used_pin_number" class="form-control" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="online_order">Online Order:</label>
+                    <select name="online_order" class="form-control" required>
+                        <option value="1">Yes</option>
+                        <option value="0">No</option>
+                    </select>
+                </div>
+            </div>
+            <button type="submit" class="btn btn-submit btn-block">Submit</button>
+        </form>
+    </div>
+
+    <!-- Bootstrap JS and dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js
